@@ -1,0 +1,12 @@
+version: '3'
+services:
+  action-server:
+    image: rasa/rasa-sdk:3.6.2
+    volumes:
+      - ./actions:/app/actions
+    build:
+      context: ./actions
+      dockerfile: Dockerfile.action
+    container_name: pa-action-server
+    ports:
+      - "5055:5055"

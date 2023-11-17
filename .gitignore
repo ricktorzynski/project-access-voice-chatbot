@@ -1,0 +1,6 @@
+# directories to ignore
+models/
+*.tar.gz
+.config
+.keras
+.rasa

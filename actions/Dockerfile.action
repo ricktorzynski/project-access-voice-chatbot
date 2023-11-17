@@ -1,0 +1,17 @@
+FROM rasa/rasa-sdk:3.6.2
+WORKDIR /app
+
+USER root
+RUN export REQUESTS_CA_BUNDLE='openai.crt'
+
+RUN apt-get install -y ca-certificates
+COPY openai.crt /usr/local/share/ca-certificates/openai.crt
+RUN chmod 644 /usr/local/share/ca-certificates/*.crt
+RUN update-ca-certificates
+
+COPY requirements-actions.txt .
+
+RUN pip install --verbose -r requirements-actions.txt
+
+COPY * /app/
+USER 1001
